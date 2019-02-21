@@ -1,4 +1,7 @@
 FROM ubuntu:18.04
+
+USER root
+
 RUN dpkg --add-architecture i386
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y git dialog lsb-release binutils wget ca-certificates device-tree-compiler \
@@ -12,8 +15,10 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade && 
 RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' TERM=screen
 
-USER root
 
-WORKDIR /root/armbian
-COPY . /root/armbian
+WORKDIR /root/gitpod
+COPY . /root/gitpod
+
+# WORKDIR /root/armbian
+# COPY . /root/armbian
 # ENTRYPOINT [ "/bin/bash", "/root/armbian/compile.sh" ]
