@@ -11,6 +11,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade && 
 	libc6-i386 lib32ncurses5 lib32tinfo5 locales ncurses-base zlib1g:i386 pixz bison libbison-dev flex libfl-dev
 RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' TERM=screen
-# WORKDIR /root/armbian
-# COPY . /root/armbian
+
+USER root
+
+WORKDIR /root/armbian
+COPY . /root/armbian
 # ENTRYPOINT [ "/bin/bash", "/root/armbian/compile.sh" ]
